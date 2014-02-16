@@ -64,7 +64,11 @@ describe('Require statements', function() {
 				return callback(err);
 			}
 
-			new Neuter().parse('test/fixtures/ignores_files_when_told.js', function(err, result) {
+			new Neuter({
+				skipFiles: [
+					'test/fixtures/contains_commonjs_require.js'
+				],
+			}).parse('test/fixtures/ignores_files_when_told.js', function(err, result) {
 				if (err) {
 					throw err;
 				}
@@ -135,7 +139,11 @@ describe('Require statements', function() {
 					return callback(err);
 				}
 
-				new Neuter().parse('test/fixtures/simple_require_filepath_transforms.js', function(err, result) {
+				new Neuter({
+					filepathTransform: function(filepath) {
+						return 'test/fixtures/' + filepath;
+					},
+				}).parse('test/fixtures/simple_require_filepath_transforms.js', function(err, result) {
 					if (err) {
 						throw err;
 					}
@@ -154,7 +162,9 @@ describe('Require statements', function() {
 					return callback(err);
 				}
 
-				new Neuter().parse('test/fixtures/simple_require_filepath_transforms.js', function(err, result) {
+				new Neuter({
+					basePath: 'test/fixtures/',
+				}).parse('test/fixtures/simple_require_filepath_transforms.js', function(err, result) {
 					if (err) {
 						throw err;
 					}
@@ -230,7 +240,9 @@ describe('Relative require statements', function() {
 					return callback(err);
 				}
 
-				new Neuter().parse('test/fixtures/relative_requires_with_basepath.js', function(err, result) {
+				new Neuter({
+					basePath: 'test/fixtures/'
+				}).parse('test/fixtures/relative_requires_with_basepath.js', function(err, result) {
 					if (err) {
 						throw err;
 					}
@@ -250,7 +262,9 @@ describe('Seperator options', function() {
 				return callback(err);
 			}
 
-			new Neuter().parse('test/fixtures/simple_require_statements.js', function(err, result) {
+			new Neuter({
+				separator: '!!!!',
+			}).parse('test/fixtures/simple_require_statements.js', function(err, result) {
 				if (err) {
 					throw err;
 				}
@@ -385,7 +399,14 @@ describe('Files', function() {
 				return callback(err);
 			}
 
-			new Neuter().parse('test/fixtures/process_as_template.js', function(err, result) {
+			new Neuter({
+				process: {
+					data: {
+						foo: 5,
+						bar: 'baz'
+					}
+				}
+			}).parse('test/fixtures/process_as_template.js', function(err, result) {
 				if (err) {
 					throw err;
 				}
@@ -402,7 +423,15 @@ describe('Files', function() {
 				return callback(err);
 			}
 
-			new Neuter().parse('test/fixtures/simple_require.js', function(err, result) {
+			new Neuter({
+				process: function(file) {
+					file.contents = Buffer.concat([
+						new Buffer('// Source for: ' + file.path + '\n'),
+						file.contents,
+					]);
+					return file;
+				}
+			}).parse('test/fixtures/simple_require.js', function(err, result) {
 				if (err) {
 					throw err;
 				}
