@@ -1,0 +1,29 @@
+{
+  "name": "neuter",
+  "version": "0.0.0",
+  "description": "Require files in a file and generate one single combined file",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*_test.js"
+  },
+  "keywords": [
+    "neuter",
+    "require",
+    "combine"
+  ],
+  "author": "Thomas Vervest <thomas@squarewolf.nl>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "should": "~3.1.2",
+    "async": "~0.2.10",
+    "vinyl": "~0.2.3"
+  },
+  "dependencies": {
+    "async": "~0.2.10",
+    "esprima": "~1.0.4",
+    "source-map": "~0.1.32",
+    "glob": "~3.2.8",
+    "vinyl": "~0.2.3"
+  }
+}
