@@ -6,6 +6,7 @@ var should = require('should');
 var File = require('vinyl');
 var Neuter = require('../index');
 var path = require('path');
+var sourceMap = require('source-map');
 
 function readFileAsync(filepath) {
 	var filepath = path.resolve(process.cwd(), filepath);
@@ -47,12 +48,16 @@ describe('Require statements', function() {
 				return callback(err);
 			}
 
-			new Neuter().parse('test/fixtures/simple_require_filepath_transforms.js', function(err, result) {
+			new Neuter().parse('test/fixtures/simple_require_statements.js', function(err, result) {
 				if (err) {
 					throw err;
 				}
 
-				result.should.equal(expected.toString());
+				var codeMap = result.toStringWithSourceMap({
+					file: 'simple_require_statements.js',
+				});
+
+				codeMap.code.should.equal(expected.toString());
 				done();
 			});
 		});
@@ -73,24 +78,11 @@ describe('Require statements', function() {
 					throw err;
 				}
 
-				result.should.equal(expected.toString());
-				done();
-			});
-		});
-	});
+				var codeMap = result.toStringWithSourceMap({
+					file: 'ignores_files_when_told.js',
+				});
 
-	it('in javascript statements should be ignored', function(done) {
-		fs.readFile('test/expected/do_not_replace_requires_in_statements.js', function(err, expected) {
-			if (err) {
-				return callback(err);
-			}
-
-			new Neuter().parse('test/fixtures/do_not_replace_requires_in_statements.js', function(err, result) {
-				if (err) {
-					throw err;
-				}
-
-				result.should.equal(expected.toString());
+				codeMap.code.should.equal(expected.toString());
 				done();
 			});
 		});
@@ -107,8 +99,35 @@ describe('Require statements', function() {
 					throw err;
 				}
 
-				result.should.equal(expected.toString());
+				var codeMap = result.toStringWithSourceMap({
+					file: 'comment_out_require.js',
+				});
+
+				codeMap.code.should.equal(expected.toString());
 				done();
+			});
+		});
+	});
+
+	describe('which reference a local function', function() {
+		it('should be ignored', function(done) {
+			fs.readFile('test/expected/local_require_definitions.js', function(err, expected) {
+				if (err) {
+					return callback(err);
+				}
+
+				new Neuter().parse('test/fixtures/local_require_definitions.js', function(err, result) {
+					if (err) {
+						throw err;
+					}
+
+					var codeMap = result.toStringWithSourceMap({
+						file: 'local_require_definitions.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
+					done();
+				});
 			});
 		});
 	});
@@ -125,7 +144,11 @@ describe('Require statements', function() {
 						throw err;
 					}
 
-					result.should.equal(expected.toString());
+					var codeMap = result.toStringWithSourceMap({
+						file: 'optional_semicolons.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
 					done();
 				});
 			});
@@ -148,7 +171,11 @@ describe('Require statements', function() {
 						throw err;
 					}
 
-					result.should.equal(expected.toString());
+					var codeMap = result.toStringWithSourceMap({
+						file: 'simple_require_filepath_transforms.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
 					done();
 				});
 			});
@@ -169,7 +196,11 @@ describe('Require statements', function() {
 						throw err;
 					}
 
-					result.should.equal(expected.toString());
+					var codeMap = result.toStringWithSourceMap({
+						file: 'simple_require_filepath_transforms.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
 					done();
 				});
 			});
@@ -188,7 +219,11 @@ describe('Require statements', function() {
 						throw err;
 					}
 
-					result.should.equal(expected.toString());
+					var codeMap = result.toStringWithSourceMap({
+						file: 'duplicate_require_statements.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
 					done();
 				});
 			});
@@ -207,7 +242,11 @@ describe('Require statements', function() {
 						throw err;
 					}
 
-					result.should.equal(expected.toString());
+					var codeMap = result.toStringWithSourceMap({
+						file: 'circular_require_statements.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
 					done();
 				});
 			});
@@ -227,7 +266,11 @@ describe('Relative require statements', function() {
 					throw err;
 				}
 
-				result.should.equal(expected.toString());
+				var codeMap = result.toStringWithSourceMap({
+					file: 'relative_require_statements.js',
+				});
+
+				codeMap.code.should.equal(expected.toString());
 				done();
 			});
 		});
@@ -247,7 +290,11 @@ describe('Relative require statements', function() {
 						throw err;
 					}
 
-					result.should.equal(expected.toString());
+					var codeMap = result.toStringWithSourceMap({
+						file: 'relative_requires_with_basepath.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
 					done();
 				});
 			});
@@ -269,7 +316,11 @@ describe('Seperator options', function() {
 					throw err;
 				}
 
-				result.should.equal(expected.toString());
+				var codeMap = result.toStringWithSourceMap({
+					file: 'simple_require_statements.js',
+				});
+
+				codeMap.code.should.equal(expected.toString());
 				done();
 			});
 		});
@@ -288,7 +339,11 @@ describe('Code order between require statements', function() {
 					throw err;
 				}
 
-				result.should.equal(expected.toString());
+				var codeMap = result.toStringWithSourceMap({
+					file: 'respects_code_order_between_requires.js',
+				});
+
+				codeMap.code.should.equal(expected.toString());
 				done();
 			});
 		});
@@ -308,7 +363,11 @@ describe('Patterns', function() {
 						throw err;
 					}
 
-					result.should.equal(expected.toString());
+					var codeMap = result.toStringWithSourceMap({
+						file: 'accepts_file_patterns.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
 					done();
 				});
 			});
@@ -327,7 +386,11 @@ describe('Patterns', function() {
 						throw err;
 					}
 
-					result.should.equal(expected.toString());
+					var codeMap = result.toStringWithSourceMap({
+						file: 'glob_require.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
 					done();
 				});
 			});
@@ -346,7 +409,11 @@ describe('Patterns', function() {
 						throw err;
 					}
 
-					result.should.equal(expected.toString());
+					var codeMap = result.toStringWithSourceMap({
+						file: 'spaces_allowed_within_require_statement.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
 					done();
 				});
 			});
@@ -365,7 +432,11 @@ describe('Patterns', function() {
 						throw err;
 					}
 
-					result.should.equal(expected.toString());
+					var codeMap = result.toStringWithSourceMap({
+						file: 'optional_dotjs.js',
+					});
+
+					codeMap.code.should.equal(expected.toString());
 					done();
 				});
 			});
@@ -380,12 +451,22 @@ describe('Source maps', function() {
 				return callback(err);
 			}
 
-			new Neuter().generateMap('test/fixtures/glob_require.js', function(err, result) {
+			new Neuter().parse('test/fixtures/glob_require.js', function(err, result) {
 				if (err) {
 					throw err;
 				}
 
-				result.should.equal(expected.toString());
+				var codeMap = result.toStringWithSourceMap({
+					file: 'source_maps.js',
+				});
+
+				var consumer = new sourceMap.SourceMapConsumer(codeMap.map.toJSON());
+				var generator = sourceMap.SourceMapGenerator.fromSourceMap(consumer);
+				var newSourceMap = generator.toJSON();
+				newSourceMap.file = path.basename(newSourceMap.file);
+				var map = JSON.stringify(newSourceMap, null, '  ');
+
+				map.should.equal(expected.toString());
 				done();
 			});
 		});
@@ -401,17 +482,19 @@ describe('Files', function() {
 
 			new Neuter({
 				process: {
-					data: {
-						foo: 5,
-						bar: 'baz'
-					}
+					foo: 5,
+					bar: 'baz'
 				}
 			}).parse('test/fixtures/process_as_template.js', function(err, result) {
 				if (err) {
 					throw err;
 				}
 
-				result.should.equal(expected.toString());
+				var codeMap = result.toStringWithSourceMap({
+					file: 'process_as_template.js',
+				});
+
+				codeMap.code.should.equal(expected.toString());
 				done();
 			});
 		});
@@ -436,7 +519,11 @@ describe('Files', function() {
 					throw err;
 				}
 
-				result.should.equal(expected.toString());
+				var codeMap = result.toStringWithSourceMap({
+					file: 'simple_require.js',
+				});
+
+				codeMap.code.should.equal(expected.toString());
 				done();
 			});
 		});
