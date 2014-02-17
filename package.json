@@ -4,7 +4,7 @@
   "description": "Require files in a file and generate one single combined file",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/*_test.js"
+    "test": "./node_modules/.bin/mocha --reporter spec --ui bdd test/*_test.js"
   },
   "keywords": [
     "neuter",
