@@ -1,7 +1,9 @@
 {
   "name": "neuter",
   "version": "0.0.0",
-  "description": "Require files in a file and generate one single combined file",
+  "description": "Unifies javascript source files in the order you require",
+  "homepage": "https://github.com/squarewolf/node-neuter",
+  "bugs": "https://github.com/squarewolf/node-neuter/issues",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec --ui bdd test/*_test.js"
@@ -9,9 +11,10 @@
   "keywords": [
     "neuter",
     "require",
-    "combine"
+    "combine",
+    "unify"
   ],
-  "author": "Thomas Vervest <thomas@squarewolf.nl>",
+  "author": "Thomas Vervest <thomas@squarewolf.nl> (http://www.squarewolf.nl)",
   "license": "MIT",
   "devDependencies": {
     "mocha": "~1.17.1",
@@ -26,5 +29,8 @@
     "glob": "~3.2.8",
     "vinyl": "~0.2.3",
     "lodash": "~2.4.1"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
