@@ -53,28 +53,28 @@ option and corresponding features have been dropped.
 
   1. Merges files into the main file on each call of ```require(file)```
 
-  * Ignores calls to locally defined require methods
+  2. Ignores calls to locally defined require methods
 
-  * Support for glob pathnames
+  3. Support for glob pathnames
 
-  * Guards against double inclusion
+  4. Guards against double inclusion
 
-  * Support for file blacklisting (files will be included raw)
+  5. Support for file blacklisting (files will be included raw)
 
-  * Support for pre-include templating
+  6. Support for pre-include templating
 
-  * Support for include basepath
+  7. Support for include basepath
 
-  * Unifies into a universal
-    [SourceNode](https://github.com/mozilla/source-map#sourcenode) object
+  8. Unifies into a universal
+     [SourceNode](https://github.com/mozilla/source-map#sourcenode) object
 
-  * Support for the [vynil](https://github.com/wearefractal/vinyl) virtual fyle
-    format
+  9. Support for the [vynil](https://github.com/wearefractal/vinyl) virtual fyle
+     format
 
-  * Passes all [grunt-neuter](https://github.com/trek/grunt-neuter) unit tests,
-    excluding those requiring the
-    [includesourcemap](https://github.com/trek/grunt-neuter#includesourcemap)
-    feature
+  10. Passes all [grunt-neuter](https://github.com/trek/grunt-neuter) unit
+      tests, excluding those requiring the
+      [includesourcemap](https://github.com/trek/grunt-neuter#includesourcemap)
+      feature
 
 #### TODO's
 
