@@ -79,6 +79,8 @@ option and corresponding features have been dropped.
 #### TODO's
 
   * make full use of Buffers
+  * write testcases for `parse(File, callback)` interface
+  * write documentation for `parse(File, callback)` interface
   * ...
 
 ## Neuter
