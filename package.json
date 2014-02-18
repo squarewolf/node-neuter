@@ -19,7 +19,6 @@
   "devDependencies": {
     "mocha": "~1.17.1",
     "should": "~3.1.2",
-    "async": "~0.2.10",
     "vinyl": "~0.2.3"
   },
   "dependencies": {
