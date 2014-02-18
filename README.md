@@ -8,13 +8,13 @@ The stable version of the node-neuter library can be installed from the
 [npm package](https://www.npmjs.org/package/neuter):
 
 ```shell
-npm install neuter --save-dev
+npm install neuter
 ```
 
 Alternatively the latest version can be installed from git:
 
 ```shell
-npm install git@github.com:squarewolf/node-neuter.git --save-dev
+npm install https://github.com/squarewolf/node-neuter/archive/master.tar.gz
 ```
 
 Then simply require node-neuter in your project
