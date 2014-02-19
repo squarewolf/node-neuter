@@ -1,6 +1,6 @@
 {
   "name": "neuter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Unifies javascript source files in the order you require",
   "homepage": "https://github.com/squarewolf/node-neuter",
   "bugs": "https://github.com/squarewolf/node-neuter/issues",
