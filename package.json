@@ -24,7 +24,7 @@
   "dependencies": {
     "async": "~0.2.10",
     "esprima": "~1.0.4",
-    "source-map": "~0.1.32",
+    "source-map": "^0.1.33",
     "glob": "~3.2.8",
     "vinyl": "~0.2.3",
     "lodash": "~2.4.1"
