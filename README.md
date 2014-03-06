@@ -1,4 +1,4 @@
-# node-neuter [![Build Status](https://travis-ci.org/squarewolf/node-neuter.png?branch=master)](https://travis-ci.org/squarewolf/node-neuter) [![Dependencies](https://david-dm.org/squarewolf/node-neuter.png)](https://david-dm.org/)
+# node-neuter [![Build Status](https://travis-ci.org/squarewolf/node-neuter.png?branch=master)](https://travis-ci.org/squarewolf/node-neuter) [![Dependencies](https://david-dm.org/squarewolf/node-neuter.png)](https://david-dm.org/) [![Code Climate](https://codeclimate.com/github/squarewolf/node-neuter.png)](https://codeclimate.com/github/squarewolf/node-neuter)
 
 > Unifies javascript source files in the order you require
 
