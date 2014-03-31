@@ -83,6 +83,16 @@ option and corresponding features have been dropped.
   * write documentation for `parse(File, callback)` interface
   * ...
 
+## Contributing
+
+Before reporting an issue, please check if the issue isn't reported already. If it isn't, please open an issue taking into account the [bug reporting guidelines](https://developer.mozilla.org/en-US/docs/Mozilla/QA/Bug_writing_guidelines).
+
+Optionally, if you're up for the challenge of fixing the issue, fork the repo. Commit the patch to your local branch (**not** the master branch) and send in a pull request. We *love* pull requests!
+
+### Special thanks go to
+
+* [bschuedzig](https://github.com/bschuedzig) for reporting the very first bug *and* pull request
+
 ## Neuter
 
 ### Usage
