@@ -15,6 +15,9 @@
     "unify"
   ],
   "author": "Thomas Vervest <thomas@squarewolf.nl> (http://www.squarewolf.nl)",
+  "contributors": [
+    "Ben Schuedzig (https://github.com/bschuedzig)"
+  ],
   "license": "MIT",
   "devDependencies": {
     "mocha": "~1.17.1",
