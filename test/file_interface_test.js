@@ -613,5 +613,20 @@ describe('When passing a file as input source', function() {
 				});
 			});
 		});
+
+		it('with syntax errors should forward exceptions to callback', function(done) {
+			readFileAsync('test/fixtures/syntax_error.js', function(err, sourceFile) {
+				if (err) {
+					throw err;
+				}
+
+				new Neuter({}).parse(sourceFile, function(err, result) {
+					should(err).be.an.Error;
+					should(err.message).match(new RegExp('test' + path.sep + 'fixtures' + path.sep + 'syntax_error.js', 'i'));
+					should(err.message).match(new RegExp('unexpected identifier', 'i'));
+					done();
+				});
+			})
+		})
 	});
 });
