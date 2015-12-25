@@ -412,29 +412,29 @@ describe('When passing a filepath as input source', function() {
 
 	describe('source maps', function() {
 		it('should be generated', function(done) {
-			fs.readFile('test/expected/source_maps.map', function(err, expected) {
+			new Neuter().parse('test/fixtures/glob_require.js', function(err, result) {
 				if (err) {
 					throw err;
 				}
 
-				new Neuter().parse('test/fixtures/glob_require.js', function(err, result) {
-					if (err) {
-						throw err;
-					}
-
-					var codeMap = result.toStringWithSourceMap({
-						file: 'source_maps.js',
-					});
-
-					var consumer = new sourceMap.SourceMapConsumer(codeMap.map.toJSON());
-					var generator = sourceMap.SourceMapGenerator.fromSourceMap(consumer);
-					var newSourceMap = generator.toJSON();
-					newSourceMap.file = path.basename(newSourceMap.file);
-					var map = JSON.stringify(newSourceMap, null, '  ');
-
-					map.should.equal(expected.toString());
-					done();
+				var codeMap = result.toStringWithSourceMap({
+					file: 'source_maps.js',
 				});
+
+				var consumer = new sourceMap.SourceMapConsumer(codeMap.map.toJSON());
+				var generator = sourceMap.SourceMapGenerator.fromSourceMap(consumer);
+				var newSourceMap = generator.toJSON();
+				newSourceMap.file = path.basename(newSourceMap.file);
+
+				newSourceMap.should.have.property('version', 3);
+				newSourceMap.should.have.property('file', 'source_maps.js');
+				newSourceMap.should.have.property('sources', [
+					"test/fixtures/require_glob/a.js",
+					"test/fixtures/require_glob/b.js",
+				]);
+				newSourceMap.should.have.property('names', []);
+				newSourceMap.should.have.property('mappings', ';;;AACA;;;;;;;ACAA');
+				done();
 			});
 		});
 	});
