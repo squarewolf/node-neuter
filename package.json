@@ -20,17 +20,16 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "mocha": "~1.17.1",
-    "should": "~3.1.2",
-    "vinyl": "~0.2.3"
+    "mocha": "^2.3.4",
+    "should": "^8.0.2"
   },
   "dependencies": {
-    "async": "~0.2.10",
-    "esprima": "~1.0.4",
-    "source-map": "^0.1.33",
-    "glob": "~3.2.8",
-    "vinyl": "~0.2.3",
-    "lodash": "~2.4.1"
+    "async": "^1.5.0",
+    "esprima": "^1.0.4",
+    "glob": "^6.0.2",
+    "lodash": "^3.10.1",
+    "source-map": "^0.5.3",
+    "vinyl": "^1.1.0"
   },
   "engines": {
     "node": "0.10.x"
