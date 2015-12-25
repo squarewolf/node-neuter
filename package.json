@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "async": "^1.5.0",
-    "esprima": "^1.0.4",
+    "esprima": "^2.7.1",
     "glob": "^6.0.2",
     "lodash": "^3.10.1",
     "source-map": "^0.5.3",
