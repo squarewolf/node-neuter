@@ -18,6 +18,10 @@
   "contributors": [
     "Ben Schuedzig (https://github.com/bschuedzig)"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/squarewolf/node-neuter.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "mocha": "^2.3.4",
