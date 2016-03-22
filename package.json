@@ -30,8 +30,8 @@
   "dependencies": {
     "async": "^1.5.0",
     "esprima": "^2.7.1",
-    "glob": "^6.0.2",
-    "lodash": "^3.10.1",
+    "glob": "^7.0.3",
+    "lodash": "^4.6.1",
     "source-map": "^0.5.3",
     "vinyl": "^1.1.0"
   },
